@@ -1,0 +1,19 @@
+{
+  "name": "transactions_api",
+  "version": "1.0.0",
+  "description": "A simple transactions api to retrieve all the transactions within a certain timeframe",
+  "author": "Gabriele Venturi <lele.venturi@gmail.com>",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.12"
+  },
+  "engines": {
+    "yarn": "1.22.5",
+    "node": "14.17.4"
+  }
+}
