@@ -1,14 +1,14 @@
 "use strict";
 
-const express = require("express");
-const app = express();
+import express, { Application, Request, Response } from "express";
+const app: Application = express();
 
 // Server config
 const PORT = 3000;
 const HOST = "0.0.0.0";
 
 // App
-app.get("/", (req, res) => {
+app.get("/", (_req: Request, res: Response) => {
   res.send("Hello World");
 });
 
