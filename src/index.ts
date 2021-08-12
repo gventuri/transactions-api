@@ -1,16 +1,22 @@
-"use strict";
+import 'dotenv/config';
 
-import express, { Application, Request, Response } from "express";
+import express, { Application, Request, Response } from 'express';
+import db from './db';
+
 const app: Application = express();
 
-// Server config
-const PORT = 3000;
-const HOST = "0.0.0.0";
-
 // App
-app.get("/", (_req: Request, res: Response) => {
-  res.send("Hello World");
+app.use(express.json());
+app.get('/', async (_req: Request, res: Response) => {
+  res.send('Hello World');
 });
 
-app.listen(PORT, HOST);
-console.log(`Running on http://${HOST}:${PORT}`);
+app.listen(
+  Number(process.env.NODE_LOCAL_PORT),
+  String(process.env.NODE_HOST),
+  () => {
+    console.log(
+      `Running on http://${process.env.NODE_HOST}:${process.env.NODE_LOCAL_PORT}`
+    );
+  }
+);

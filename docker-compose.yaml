@@ -1,0 +1,26 @@
+version: '3.2'
+services:
+  db:
+    image: mysql:5.7.24
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - $MYSQL_LOCAL_PORT:$MYSQL_DOCKER_PORT
+    volumes:
+      - mysql:/var/lib/mysql
+  app:
+    build:
+      context: .
+    env_file: ./.env
+    command: yarn start
+    volumes:
+      - .:/app/
+      - /app/node_modules
+    ports:
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    depends_on:
+      - db
+    environment:
+      MYSQL_HOST: db
+volumes:
+  mysql:
