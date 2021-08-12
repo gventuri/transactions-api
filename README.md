@@ -10,6 +10,7 @@ To setup the project:
 - create a `.env` file (you can copy the sample info from `.env.example`);
 - run `cd transactions-api` to go to the project folder;
 - run `docker compose up`: this will setup the docker container for the api and for mysql;
+- run `yarn migrate` to run the migrations (you can also revert them one by one with `yarn rollback`);
 
 ## Start
 

@@ -5,7 +5,9 @@
   "author": "Gabriele Venturi <lele.venturi@gmail.com>",
   "main": "src/index.ts",
   "scripts": {
-    "start": "nodemon"
+    "start": "nodemon",
+    "migrate": "node node_modules/db-migrate/bin/db-migrate up",
+    "rollback": "node node_modules/db-migrate/bin/db-migrate down"
   },
   "license": "ISC",
   "dependencies": {
@@ -24,6 +26,8 @@
     "@types/node": "^16.4.13",
     "@typescript-eslint/eslint-plugin": "^4.29.1",
     "@typescript-eslint/parser": "^4.29.1",
+    "db-migrate": "^0.11.12",
+    "db-migrate-mysql": "^2.1.2",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
