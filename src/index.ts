@@ -1,23 +1,11 @@
 import 'dotenv/config';
-import User from './models/User';
-
-import express, { Application, Request, Response } from 'express';
+import express, { Application } from 'express';
+import routes from './routes';
 
 const app: Application = express();
-
-// App
 app.use(express.json());
-app.get(
-  '/users/:id/merchants_with_percentile',
-  async (req: Request, res: Response) => {
-    const merchants = await User.getMerchantsWithPercentile(
-      Number(req.params.id),
-      String(req.query.from),
-      String(req.query.to)
-    );
-    res.json(merchants);
-  }
-);
+
+app.use(routes);
 
 app.listen(
   Number(process.env.NODE_LOCAL_PORT),

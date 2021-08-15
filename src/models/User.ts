@@ -9,7 +9,7 @@ type MercantRanking = {
 interface IUser {
   merchantIdsSQL: string;
   intervalMerchantPercentilesByUserSQL: string;
-  getMerchantIds: (id: number, from: string, to: string) => Promise<string>;
+  getMerchantIds: (id: number, from: string, to: string) => Promise<number[]>;
   getMerchantsWithPercentile: (
     id: number,
     from: string,
@@ -59,7 +59,9 @@ class User extends Model implements IUser {
       from,
       to,
     ]);
-    return merchantsQuery[0]['merchants'].split(',');
+    return merchantsQuery[0]['merchants']
+      ? merchantsQuery[0]['merchants'].split(',')
+      : [];
   };
 
   getMerchantsWithPercentile = async (id: number, from: string, to: string) => {
