@@ -7,7 +7,8 @@
   "scripts": {
     "start": "nodemon",
     "migrate": "node node_modules/db-migrate/bin/db-migrate up",
-    "rollback": "node node_modules/db-migrate/bin/db-migrate down"
+    "rollback": "node node_modules/db-migrate/bin/db-migrate down",
+    "seed": "node_modules/ts-node/dist/bin.js seed.ts"
   },
   "license": "ISC",
   "dependencies": {
@@ -26,6 +27,7 @@
     "@types/node": "^16.4.13",
     "@typescript-eslint/eslint-plugin": "^4.29.1",
     "@typescript-eslint/parser": "^4.29.1",
+    "@types/faker": "^5.5.8",
     "db-migrate": "^0.11.12",
     "db-migrate-mysql": "^2.1.2",
     "eslint": "^7.32.0",
@@ -36,6 +38,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-promise": "^5.1.0",
-    "ts-node": "^10.2.0"
+    "ts-node": "^10.2.0",
+    "faker": "^5.5.3"
   }
 }

@@ -11,6 +11,7 @@ To setup the project:
 - run `cd transactions-api` to go to the project folder;
 - run `docker compose up`: this will setup the docker container for the api and for mysql;
 - run `yarn migrate` to run the migrations (you can also revert them one by one with `yarn rollback`);
+- run `yarn seed` to automatically create 1000 random users, 500 random merchants and 1.000.000 random transactions
 
 ## Running
 
