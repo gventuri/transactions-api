@@ -1,14 +1,12 @@
 import Model from '../db/Model';
 
-type MercantRanking = {
+export type MercantRanking = {
   readonly merchant_id: number;
   readonly merchant_name: string;
   readonly percentile: number;
 };
 
-interface IUser {
-  merchantIdsSQL: string;
-  intervalMerchantPercentilesByUserSQL: string;
+export interface IUser {
   getMerchantIds: (id: number, from: string, to: string) => Promise<number[]>;
   getMerchantsWithPercentile: (
     id: number,
@@ -18,7 +16,9 @@ interface IUser {
 }
 
 class User extends Model implements IUser {
-  merchantIdsSQL = `
+  tableName = 'Users';
+
+  #merchantIdsSQL: string = `
     SELECT
       GROUP_CONCAT(DISTINCT merchant_id) AS merchants
     FROM
@@ -29,7 +29,7 @@ class User extends Model implements IUser {
       date BETWEEN ? AND ?
   `;
 
-  intervalMerchantPercentilesByUserSQL = `
+  #intervalMerchantPercentilesByUserSQL: string = `
     SELECT
       merchant_id,
       user_id,
@@ -54,7 +54,7 @@ class User extends Model implements IUser {
   `;
 
   getMerchantIds = async (id: number, from: string, to: string) => {
-    const merchantsQuery = await this.query(this.merchantIdsSQL, [
+    const merchantsQuery = await this.query(this.#merchantIdsSQL, [
       id,
       from,
       to,
@@ -70,7 +70,9 @@ class User extends Model implements IUser {
     return this.query(
       `
       WITH
-        IntervalMerchantPercentilesByUser AS (${this.intervalMerchantPercentilesByUserSQL})
+        IntervalMerchantPercentilesByUser AS (${
+          this.#intervalMerchantPercentilesByUserSQL
+        })
       SELECT
         Merchants.display_name,
         IntervalMerchantPercentilesByUser.percentile
