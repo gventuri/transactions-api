@@ -16,3 +16,11 @@ export const dropDb = async () => {
     throw new Error('There was a problem while removing the DB');
   }
 };
+
+export const estimateExecutionTime = async (func: any) => {
+  const initialTime = new Date().getTime();
+  await func;
+  const finalTime = new Date().getTime();
+
+  return finalTime - initialTime;
+};

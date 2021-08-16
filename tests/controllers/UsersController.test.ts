@@ -12,8 +12,7 @@ describe('Users controller', () => {
     jest.spyOn(User, 'getMerchantsWithPercentile').mockImplementationOnce(() =>
       Promise.resolve([
         {
-          merchant_id: '1',
-          merchant_name: 'Merchant name',
+          display_name: 'Merchant name',
           percentile: '98.2',
         },
       ])
@@ -25,8 +24,7 @@ describe('Users controller', () => {
     expect(response.statusCode).toBe(200);
     expect(response.body).toMatchObject([
       {
-        merchant_id: '1',
-        merchant_name: 'Merchant name',
+        display_name: 'Merchant name',
         percentile: '98.2',
       },
     ]);

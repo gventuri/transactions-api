@@ -1,8 +1,7 @@
 import Model from '../db/Model';
 
 export type MercantRanking = {
-  readonly merchant_id: number;
-  readonly merchant_name: string;
+  readonly display_name: string;
   readonly percentile: number;
 };
 
